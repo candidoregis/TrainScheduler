@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title></title>
+    <title>Train Scheduler</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -13,6 +13,68 @@
 
 <body>
 
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1>Spacial Express</h1>
+        </div>
+
+        <div class="blockOne">
+            <table class="table border">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency (min)</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody id="trainSchedules">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Hogwarts Express</td>
+                        <td>Hogwarts</td>
+                        <td>600</td>
+                        <td>09:30 PM</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="blockTwo align-items-center">
+            <form class="align-items-center">
+                <div class="form-row align-items-center">
+                    <div class="col-sm-12 pb-3">
+                        <label for="inlineFormInputName">Train Name</label>
+                        <input type="text" class="form-control" id="inlineFormInputName"
+                            placeholder="Enter the train name here">
+                    </div>
+                    <div class="col-sm-12 pb-3">
+                        <label for="inlineFormInputDestination">Destination</label>
+                        <input type="text" class="form-control" id="inlineFormInputDestination"
+                            placeholder="Enter the train's destination name here">
+                    </div>
+                    <div class="col-sm-12 pb-3">
+                        <label for="inlineFormInputTrainTime">First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="inlineFormInputTrainTime"
+                            placeholder="Enter the train's first time here">
+                    </div>
+                    <div class="col-sm-12 pb-3">
+                        <label for="inlineFormInputFrequency">Frequency</label>
+                        <input type="text" class="form-control" id="inlineFormInputFrequency"
+                            placeholder="Enter the train's frequency here">
+                    </div>
+                    <div class="col-sm-6">
+                        <button id="addNewTrain" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -23,6 +85,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    
+
+  <!-- Firebase References -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+
     <script src="assets/javascript/game.js"></script>
 
 </body>

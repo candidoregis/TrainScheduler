@@ -1,0 +1,28 @@
+/* .bigContainer {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-areas: "left top right"
+    "left center right";
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 8fr;
+    align-items: center; 
+    text-align: center;
+  } */
+
+  .container > div {
+    border: 1px #888;
+  }
+  
+  /* .leftColumn {
+    grid-area: left;
+  }
+  .headerBlock {
+    grid-area: top;
+  }
+  .rightColumn {
+    grid-area: right;
+  }
+  .mainBlock {
+    grid-area: center;
+  } */
