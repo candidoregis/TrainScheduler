@@ -23,7 +23,7 @@
             <table class="table border">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
+                        <!-- <th scope="col">#</th> -->
                         <th scope="col">Train Name</th>
                         <th scope="col">Destination</th>
                         <th scope="col">Frequency (min)</th>
@@ -33,8 +33,9 @@
                 </thead>
                 <tbody id="trainSchedules">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Hogwarts Express</td>
+                        <!-- <th scope="row">1</th> -->
+                        <th scope="row">Hogwarts Express</th>
+                        <!-- <td>Hogwarts Express</td> -->
                         <td>Hogwarts</td>
                         <td>600</td>
                         <td>09:30 PM</td>
@@ -58,7 +59,7 @@
                             placeholder="Enter the train's destination name here">
                     </div>
                     <div class="col-sm-12 pb-3">
-                        <label for="inlineFormInputTrainTime">First Train Time (HH:mm - military time)</label>
+                        <label for="inlineFormInputTrainTime">First Train Time (HHmm 24hs)</label>
                         <input type="text" class="form-control" id="inlineFormInputTrainTime"
                             placeholder="Enter the train's first time here">
                     </div>
@@ -74,6 +75,23 @@
             </form>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <h5>Please, try again.</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -85,13 +103,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    
 
-  <!-- Firebase References -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 
     <script src="assets/javascript/game.js"></script>

@@ -52,31 +52,25 @@ var convertedDate = moment(randomDate, randomFormat);
 // -----
 
 function validateTrain(name, dest, ftime, freq) {
-    if ((name === "") || (dest === "") || (ftime === "") || (freq === "")) {
-        return true;
-    } else {
-        return false;
-    }
+    var isValid = ((name === "") || (dest === "") || (ftime === "") || (freq === ""));
+    console.log("is valid: " + isValid);
+    return isValid;
+    // } else {
+    // return false;
+    // }
 }
 
 function minAwayCalc(fitime, freq) {
-    // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(fitime, "HH:mm").subtract(1, "years");
-    // console.log(firstTimeConverted);
     var currentTime = moment();
-    // console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    // console.log("DIFFERENCE IN TIME: " + diffTime);
     var tRemainder = diffTime % freq;
-    // console.log(tRemainder);
     var tMinutesTillTrain = freq - tRemainder;
-    // console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
     return tMinutesTillTrain;
 }
 
 function nextTrainCalc(minutes) {
     var nextTrain = moment().add(minutes, "minutes");
-    // console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
     return moment(nextTrain).format("hh:mm");
 }
 
@@ -103,32 +97,37 @@ function frequencyValidation(inputField) {
 }
 
 function retrieveData() {
-    console.log("entrei no retrieve");
+    $("#trainSchedules").empty();
     var query = firebase.database().ref();
-    console.log(query);
     query.once("value")
         .then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
-                // key will be "ada" the first time and "alan" the second time
                 var key = childSnapshot.key;
-                // console.log(key);
-                // childData will be the actual contents of the child
                 var childData = childSnapshot.val();
-                // console.log(childData);
                 addData(childData);
             });
         });
 }
 
-function addData(data){
+function addData(data) {
     var name = data.trainName;
     var destination = data.trainDestination;
     var frequency = data.trainFrequency;
     var firstTime = data.trainFirstTime;
     var minutesAway = minAwayCalc(firstTime, frequency);
     var nextTrain = nextTrainCalc(minutesAway);
-    console.log(name);
 
+    // Creating a variable to hold the data before appending it
+    var newRow = $("<tr>").append(
+        $("<td>").text(name),
+        $("<td>").text(destination),
+        $("<td>").text(frequency),
+        $("<td>").text(nextTrain),
+        $("<td>").text(minutesAway)
+    );
+
+    // Append the new row to the table
+    $("#trainSchedules").append(newRow);
 }
 
 $("#addNewTrain").on("click", function () {
@@ -139,17 +138,14 @@ $("#addNewTrain").on("click", function () {
     var trainDestination = $("#inlineFormInputDestination").val().trim();
     var trainFirstTime = $("#inlineFormInputTrainTime").val().trim();
 
-    // var trainFrequency = parseInt($("#inlineFormInputFrequency").val().trim());
-    var trainFrequency = $("#inlineFormInputFrequency").val().trim(); //need to parseInt later
+    var trainFrequency = $("#inlineFormInputFrequency").val().trim(); 
 
     // Validate entries
     if (validateTrain(trainName, trainDestination, trainFirstTime, trainFrequency)) {
-        console.log("Tente outra vez");
-        //DISPLAY MODAL PARA INSERIR DADOS VALIDOS
+        $('#exampleModal').modal('show');
     } else if ((timeLengthValidation(trainFirstTime))
         && (timeValidation(trainFirstTime))
         && (frequencyValidation(trainFrequency))) {
-        console.log("entrei ");
         database.ref().push({
             trainName: trainName,
             trainDestination: trainDestination,
@@ -158,14 +154,10 @@ $("#addNewTrain").on("click", function () {
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
     } else {
-        console.log("UUAAAAAAAAAAAAAAAAA");
+        $('#exampleModal').modal('show');
     }
-    
+
     retrieveData();
-    console.log("depois");
-    //pegar valores
-    //validar valores
-    //associar a variaveis
-    //calcular tempo
-    //adicionar no gancho
 });
+
+retrieveData();
