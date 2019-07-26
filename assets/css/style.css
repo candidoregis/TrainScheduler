@@ -1,28 +1,63 @@
-/* .bigContainer {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    grid-template-areas: "left top right"
-    "left center right";
-    grid-template-columns: 1fr 8fr 1fr;
-    grid-template-rows: 1fr 8fr;
-    align-items: center; 
-    text-align: center;
-  } */
+@font-face {
+  font-family: AlienEncounters;
+  src: url(../fonts/Alien-Encounters-Italic.ttf);
+}
 
-  .container > div {
-    border: 1px #888;
+body {
+  background-image: url("../images/background_ptrn.jpg");
+}
+
+.container > div {
+   border: 1px #888;
+}
+
+.blockOne{
+   text-align: center;
+}
+
+.jumbotron {
+  position: relative;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  background-image: url("../images/station.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  vertical-align: text-bottom;
+}
+
+h1 {
+  font-family: AlienEncounters;
+  font-size: 7em;
+  text-shadow: 0 0 8px #0000FF;
+  color: white;
+}
+
+#trainSliding{
+  height: 100px;
+}
+
+div.slide-right {
+  width:100%;
+}
+
+div.slide-right div.inner {
+  animation: slide-right 30s infinite;
+  margin-top:0%;
+}
+
+.blockTwo {
+  padding-bottom: 10%;
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+    width: 300%;
   }
-  
-  /* .leftColumn {
-    grid-area: left;
+
+  to {
+    margin-left: 100%;
+    width: 100%;
   }
-  .headerBlock {
-    grid-area: top;
-  }
-  .rightColumn {
-    grid-area: right;
-  }
-  .mainBlock {
-    grid-area: center;
-  } */
+}

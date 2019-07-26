@@ -16,14 +16,16 @@
     <div class="container">
 
         <div class="jumbotron">
-            <h1>Spacial Express</h1>
+            <h1 class="col-sm-12 text-center">Express</h1>
+            <h1 class="col-sm-12 text-center">2222</h1>
         </div>
+
+
 
         <div class="blockOne">
             <table class="table border">
                 <thead class="thead-dark">
                     <tr>
-                        <!-- <th scope="col">#</th> -->
                         <th scope="col">Train Name</th>
                         <th scope="col">Destination</th>
                         <th scope="col">Frequency (min)</th>
@@ -31,17 +33,7 @@
                         <th scope="col">Minutes Away</th>
                     </tr>
                 </thead>
-                <tbody id="trainSchedules">
-                    <tr>
-                        <!-- <th scope="row">1</th> -->
-                        <th scope="row">Hogwarts Express</th>
-                        <!-- <td>Hogwarts Express</td> -->
-                        <td>Hogwarts</td>
-                        <td>600</td>
-                        <td>09:30 PM</td>
-                        <td>4</td>
-                    </tr>
-                </tbody>
+                <tbody id="trainSchedules"></tbody>
             </table>
         </div>
 
@@ -73,6 +65,12 @@
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div class="slide-right fixed-bottom">
+            <div class="inner">
+                <img id="trainSliding" src="../TrainScheduler/assets/images/train.png" alt="Sliding train">
+            </div>
         </div>
 
         <!-- Modal -->
