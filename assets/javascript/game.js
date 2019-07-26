@@ -1,4 +1,4 @@
-// 
+// FIREBASE CONFIG
 const firebaseConfig = {
     apiKey: "AIzaSyDK9MMQvhGU2SF-ou8LYFgljKTgIjCEBvc",
     authDomain: "trainscheduler7-1.firebaseapp.com",
@@ -9,17 +9,17 @@ const firebaseConfig = {
     appId: "1:183019342927:web:ea14bd05e261a570"
 };
 
-//
+// INITIALIZING FIREBASE DB
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-//
+// FUNCTION TO VALIDATE IF FORM INPUTs ARE EMPTY
 function validateTrain(name, dest, ftime, freq) {
     var isValid = ((name === "") || (dest === "") || (ftime === "") || (freq === ""));
     return isValid;
 }
 
-// 
+// FUNCTION THAT CALCULATES THE MINUTES AWAY FOR THE NEXT TRAIN
 function minAwayCalc(fitime, freq) {
     var firstTimeConverted = moment(fitime, "HH:mm").subtract(1, "years");
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
@@ -28,19 +28,19 @@ function minAwayCalc(fitime, freq) {
     return tMinutesTillTrain;
 }
 
-// 
+// FUNCTION THAT RETURNS THE NEXT TRAIN ARRIVAL
 function nextTrainCalc(minutes) {
     var nextTrain = moment().add(minutes, "minutes");
     return moment(nextTrain).format("hh:mm");
 }
 
-// 
+// VALIDATES THE LENGTH OF FIRST TRAIN TIME ENTRY
 function timeLengthValidation(inputField) {
     var isValid = (inputField.length == 4);
         return isValid;
 }
 
-// 
+// VALIDATES IF THE TIME ENTRY IS A VALID ONE
 function timeValidation(inputField) {
     if (inputField == "2400") {
         inputField = 0000;
@@ -49,13 +49,13 @@ function timeValidation(inputField) {
     return isTimeValid;
 }
 
-// 
+// VALIDATES IF THE FREQUENCY IS A NUMBER
 function frequencyValidation(inputField) {
     var isFreqValid = /^[0-9]+$/.test(inputField);
     return isFreqValid;
 }
 
-//
+// FUNCTION THAT RETRIEVES ALL DATA FROM FIREBASE DB
 function retrieveData() {
     $("#trainSchedules").empty();
     var query = firebase.database().ref();
@@ -71,7 +71,15 @@ function retrieveData() {
         });
 }
 
-// 
+// FUNCTION TO CLEAN THE FORM INPUTs 
+function cleanFields(){
+    $("#inlineFormInputName").val("");
+    $("#inlineFormInputDestination").val("");
+    $("#inlineFormInputTrainTime").val("");
+    $("#inlineFormInputFrequency").val("");    
+}
+
+// FUNCTION TO APPEND THE TRAIN INFORMATION IN HTML
 function addData(data) {
     var name = data.trainName;
     var destination = data.trainDestination;
@@ -93,6 +101,7 @@ function addData(data) {
     $("#trainSchedules").append(newRow);
 }
 
+// FUNCTION THAT ADDs THE TRAIN INFORMATION WHEN SUBMIT BUTTON IS CLICKED
 $("#addNewTrain").on("click", function () {
     event.preventDefault();
 
@@ -115,6 +124,7 @@ $("#addNewTrain").on("click", function () {
             trainFrequency: trainFrequency,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
+        cleanFields();
     } else {
         $('#exampleModal').modal('show');
     }

@@ -11,10 +11,7 @@ body {
    border: 1px #888;
 }
 
-.blockOne{
-   text-align: center;
-}
-
+/* HEADER / TITLE */
 .jumbotron {
   position: relative;
   padding-top: 10%;
@@ -33,6 +30,16 @@ h1 {
   color: white;
 }
 
+/* TABLE AND FORM CSS */
+.blockOne{
+  text-align: center;
+}
+
+.blockTwo {
+  padding-bottom: 10%;
+}
+
+/* SLIDING TRAIN CSS */
 #trainSliding{
   height: 100px;
 }
@@ -46,9 +53,7 @@ div.slide-right div.inner {
   margin-top:0%;
 }
 
-.blockTwo {
-  padding-bottom: 10%;
-}
+
 
 @keyframes slide-right {
   from {
